@@ -2,4 +2,8 @@
 - 更合理的方式是采用关联模型的方式，把分类放入另一个模型内。
 - 通过`category: { type: mongoose.SchemaTypes.ObjectId, ref: 'Category' }`将category字段与Category模型关联起来
 - 关联成功后，通过.populote获取关联模型的详细信息。比如通过`const posts = await Post.find().populate('category')`获取具体信息
-
+- 如果要通过分类来查找文章，在Category模型内添加虚拟字段，设置字段的 localField, ref, foreignField, justOne 属性。其中，
+  - localField： 本表字段
+  - ref： 关联的模型
+  - foreignField： 关联表中的字段
+  - justOne： 是否唯一（一对多，多对多等）
